@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <style type="text/css">
+      body {
+        font-family: sans-serif;
+        background: #ff8;
+      }
+      <%= pygments_css %>
+    </style>
+  </head>
+  <body>
+    <% files.each do |file| %>
+      <section class="chapter">
+        <%= file %>
+      </section>
+    <% end %>
+  </body>
+</html>
