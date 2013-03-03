@@ -74,24 +74,28 @@ module Bookbake
       layout.render(RenderContext.new({chapters: chapters, title: options[:title]}))
     end
 
+    def output_path(ext = ".html")
+      "#{path}/output/#{options[:output_filename_base]}#{ext}"
+    end
+
     def render_to_file
       FileUtils.mkdir_p("#{path}/output")
-      File.open("#{path}/output/#{options[:output_filename_base]}.html", 'w') do |file|
+      File.open(output_path, 'w') do |file|
         file.write(render())
       end
-      @html_doc = Nokogiri::HTML(open("#{path}/output/book.html"))
+      @html_doc = Nokogiri::HTML(open(output_path))
 
       add_toc(@html_doc)
-      File.open("#{path}/output/book.html", 'w') do |file|
+      File.open(output_path, 'w') do |file|
         file.write(@html_doc.to_s)
       end
       collect_and_copy_assets_from_html(@html_doc)
     end
 
     def add_toc(doc)
-      return unless toc = doc.css('section.toc').first
+      return unless toc = doc.css('.toc').first
       data = []
-      doc.css('section.chapter').each do |chapter|
+      doc.css('.chapter').each do |chapter|
         chapter_data = { id: chapter['id'], title: chapter.css('h1').first.content, sub: [] }
         chapter.css('h2').each do |sub|
           unless sub['class'] && sub['class'].match(/no-toc/)
