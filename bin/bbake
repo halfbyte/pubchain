@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+begin
+  require 'rubygems'
+  gem 'bookbake'
+rescue LoadError
+end
+require 'bookbake'
+
+Bookbake.application.run

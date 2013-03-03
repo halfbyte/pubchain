@@ -1,1 +1,4 @@
-testdata/output
+test/fixtures/test_project/output
+*.gem
+Gemfile.lock
+

@@ -1,0 +1,4 @@
+title "foo"
+author "Jan Krutisch"
+version "0.1"
+chapters Dir['*.md'].sort

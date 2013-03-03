@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="title" content="The Single Page App Jumpstart" />
+    <meta name="author" content="Jan Krutisch"/>
+    <meta charset="utf-8">
+    <link href="stylesheets/html.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <section class="toc">
+      <h1>Table Of Contents</h1>
+    </section>
+    <% chapters.each do |chapter| %>
+      <section class="chapter" id="<%= chapter[:id] %>">
+        <%= chapter[:contents] %>
+      </section>
+    <% end %>
+  </body>
+</html>
